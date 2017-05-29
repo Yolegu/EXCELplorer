@@ -9,7 +9,7 @@
 'Lieu des points critiques' 25
 'Binaire CO2 + 14' 16
 'delta_pc =    143.8726344' 25
-' Les + bleus sont issus de la thŠse de scheidgen ' 60
+' Les + bleus sont issus de la thÅ se de scheidgen ' 60
 ' On a juste Tc et Pc, pas la composition ' 50
 1 1 1  !les 2 corps purs
   304.120000     73.740000
@@ -1200,7 +1200,7 @@
   373.200000    253.000000
   393.200000    273.000000
  8888.000000   8888.000000
-1 5 1  ! LPC de scheidgen (On a pas la compo pr‚cise)
+1 5 1  ! LPC de scheidgen (On a pas la compo prâ€šcise)
 393.14 272.2
 386.83 265.0
 383.81 262.0
