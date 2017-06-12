@@ -33,6 +33,10 @@ A partir de ce moment, la macro génère les graphiques de la manière suivante 
 
 # Comment configurer Excel pour utiliser le point comme séparateur décimal uniquement dans les graphiques
 
+Dans le cas où le délimiteur décimal du système d'exploitation est autre que le point "." il est nécessaire d'effectuer quelques modifications dans Excel pour s'assurer le bon fonctionnement d'EXCELplorer. 
+
+Pour connaître le délimiteur décimal du système il faut aller dans "Panneau de configuration \ Région et langue \ Formats \ Paramètres supplémentaires \ Nombres \ Symbole décimal".
+
 ![Alt text](/img/decimal_format.png?raw=true "Optional Title")
 
 # Redimensionnement des graphiques dans Word
