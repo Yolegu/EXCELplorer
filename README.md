@@ -33,7 +33,7 @@ A partir de ce moment, la macro génère les graphiques de la manière suivante 
 
 # Comment configurer Excel pour utiliser le point comme séparateur décimal uniquement dans les graphiques
 
-![Alt text](/img/decimal_form.jpg?raw=true "Optional Title")
+![Alt text](/img/decimal_form.png?raw=true "Optional Title")
 
 # Redimensionnement des graphiques dans Word
 
