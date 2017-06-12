@@ -36,7 +36,7 @@ A partir de ce moment, la macro génère les graphiques de la manière suivante 
 Pour utiliser la virgule "," en tant que délimiteur décimal dans Excel mais pour qu'EXCELplorer créer des graphiques avec des points comme symbole décimal il faut dans Excel aller dans "Fichier \ Options \ Options avancées \ Options d'édition" et décocher "Utiliser les séparateurs système" et spécifier que la virgule "," est le séparateur décimal.
 
 <p align="center">
-![Alt text](/img/decimal_format_excel.png?raw=true "Optional Title")
+ <img src="/img/decimal_format_excel.png?raw=true" alt="Sublime's custom image"/>
 </p>
 
 # Redimensionnement des graphiques dans Word
