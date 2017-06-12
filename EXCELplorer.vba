@@ -15,6 +15,7 @@ Dim WordFileName As String
 Dim fileNumber As Integer
 Dim iSheet As Integer
 
+' Pour forcer l'utilisation du point comme séprateur décimal
 Application.DecimalSeparator = "."
 
 ' Selection du fichier Word dans lequel on souhaite sauvegarder les figures
