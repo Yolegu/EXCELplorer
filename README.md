@@ -35,9 +35,11 @@ A partir de ce moment, la macro génère les graphiques de la manière suivante 
 
 Dans le cas où le délimiteur décimal du système d'exploitation est autre que le point "." il est nécessaire d'effectuer quelques modifications dans Excel pour s'assurer le bon fonctionnement d'EXCELplorer. 
 
-Pour connaître le délimiteur décimal du système il faut aller dans "Panneau de configuration \ Région et langue \ Formats \ Paramètres supplémentaires \ Nombres \ Symbole décimal".
+Pour connaître le délimiteur décimal du système il faut aller dans "Panneau de configuration \ Région et langue \ Formats \ Paramètres supplémentaires \ Nombres \ Symbole décimal". Généralement, la virugle "," sera utilisée sur un ordinateur français car il s'agit du délimiteur décimal officiel français (à l'inverse du point "." qui est utilisé partout ailleurs). 
 
 ![Alt text](/img/decimal_format.png?raw=true "Optional Title")
+
+Pour conserver la virgule "," en tant que délimiteur dans Excel mais pour qu'EXCELplorer créer des graphiques avec des points comme symbole décimal il faut dans Excel aller dans "Fichier \ Options \ Options avancées \ Options d'édition" et décocher "Utiliser les séparateurs système".
 
 # Redimensionnement des graphiques dans Word
 
