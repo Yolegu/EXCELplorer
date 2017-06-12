@@ -13,8 +13,9 @@ Dim y_label() As String
 Dim WordFileName As String
 Dim fileNumber As Integer
 Dim iSheet As Integer
+Dim delim As String
 
-' Pour forcer l'utilisation du point comme séprateur décimal
+delim = Application.DecimalSeparator
 Application.DecimalSeparator = "."
 
 ' Selection du fichier Word dans lequel on souhaite sauvegarder les figures
@@ -740,6 +741,9 @@ For iSheet = 1 To Sheets.Count
         Sheets(iSheet).Delete
     End If
 Next
+
+' on remet le délimiteur initial d'Excel
+Application.DecimalSeparator = delim
 
 ' Affichage du docuent Word
 WDapp.Documents.Open (WordFileName)
