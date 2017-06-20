@@ -265,7 +265,7 @@ For Each file In txtFileName
                         ElseIf plotColor = 3 Then
                             s.Format.Line.ForeColor.RGB = RGB(0, 255, 0)
                         ElseIf plotColor = 4 Then
-                            s.Format.Line.ForeColor.RGB = RGB(0, 255, 255)
+                            s.Format.Line.ForeColor.RGB = RGB(255, 255, 0)
                         ElseIf plotColor = 5 Then
                             s.Format.Line.ForeColor.RGB = RGB(0, 0, 255)
                         ElseIf plotColor = 6 Then
