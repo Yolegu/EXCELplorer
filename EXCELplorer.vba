@@ -131,20 +131,44 @@ For Each file In txtFileName
             x_label_len = 0
             
             Dim iter As Integer
+            countLess = False
+
             For iter = 1 To Len(x_label(i_file))
-                If Mid(x_label(i_file), iter, 1) = "{" Or Mid(x_label(i_file), iter, 1) = "^" Or Mid(x_label(i_file), iter, 1) = "_" Then
+                
+                If Mid(x_label(i_file), iter, 1) = "^" Or Mid(x_label(i_file), iter, 1) = "_" Then
                     countLess = True
-                ElseIf Mid(x_label(i_file), iter, 1) = "}" Or Mid(x_label(i_file), iter, 1) = "\" Then
+                ElseIf (Mid(x_label(i_file), iter, 1) = "}") Then
                     countLess = False
-                Else
-                    If Mid(x_label(i_file), iter, 1) = " " Or Mid(x_label(i_file), iter, 1) = "/" Then
-                            x_label_len = x_label_len + 0.5
-                    ElseIf countLess = False Then
-                        x_label_len = x_label_len + 1
-                    Else
-                        x_label_len = x_label_len + 0.4
-                    End If
                 End If
+                    
+                If Mid(x_label(i_file), iter, 1) = " " Or Mid(x_label(i_file), iter, 1) = "/" Then
+                
+                    x_label_len = x_label_len + 0.4
+                    
+                ElseIf (Mid(x_label(i_file), iter, 1) <> "\" And Mid(x_label(i_file), iter, 1) <> "{" And Mid(x_label(i_file), iter, 1) <> "}" And Mid(x_label(i_file), iter, 1) <> "_" And Mid(x_label(i_file), iter, 1) <> "^") Then
+                    
+                    If (Mid(x_label(i_file), iter, 1) = "," Or Mid(x_label(i_file), iter, 1) = " " Or Mid(x_label(i_file), iter, 1) = "/") Then
+                    
+                        If (countLess = True) Then
+                            x_label_len = x_label_len + 0.05
+                        Else
+                            x_label_len = x_label_len + 0.1
+                        End If
+                    
+                    ElseIf countLess = True Then
+                    
+                        x_label_len = x_label_len + 0.5
+                        
+                    ElseIf countLess = False Then
+                    
+                        x_label_len = x_label_len + 0.8 ' 1
+                        
+                    End If
+                
+                End If
+                
+                ' MsgBox (Mid(x_label(i_file), iter, 1) & Str(countLess) & Str(x_label_len))
+                
             Next
             
             'MsgBox (x_label_len)
@@ -248,7 +272,6 @@ For Each file In txtFileName
                     ReDim y(i_row - 1) 'y(nLineValue - 3)
                     For j = 0 To i_row - 1 'nLineValue - 2
                         x(j) = x_temp(j)
-                        'MsgBox (Str(x(j)) & " | " & Str(x_temp(j)))
                         y(j) = y_temp(j)
                     Next
                     
@@ -268,13 +291,13 @@ For Each file In txtFileName
                         ElseIf plotColor = 2 Then
                             s.Format.Line.ForeColor.RGB = RGB(255, 0, 0)
                         ElseIf plotColor = 3 Then
-                            s.Format.Line.ForeColor.RGB = RGB(0, 255, 0)
+                            s.Format.Line.ForeColor.RGB = RGB(0, 200, 0)
                         ElseIf plotColor = 4 Then
                             s.Format.Line.ForeColor.RGB = RGB(255, 192, 0)
                         ElseIf plotColor = 5 Then
-                            s.Format.Line.ForeColor.RGB = RGB(0, 0, 255)
+                            s.Format.Line.ForeColor.RGB = RGB(10, 10, 255)
                         ElseIf plotColor = 6 Then
-                            s.Format.Line.ForeColor.RGB = RGB(185, 0, 127)
+                            s.Format.Line.ForeColor.RGB = RGB(204, 51, 255)
                         Else
                             s.Format.Line.ForeColor.RGB = RGB(0, 255, 255)
                         End If
@@ -314,6 +337,10 @@ For Each file In txtFileName
                             s.MarkerStyle = xlMarkerStyleCircle
                             s.MarkerForegroundColor = RGB(0, 0, 0)
                             s.MarkerBackgroundColor = RGB(255, 255, 255)
+                        ElseIf plotSymbol = 7 Then
+                            s.MarkerStyle = xlMarkerStyleTriangle
+                            s.MarkerForegroundColor = RGB(0, 0, 0)
+                            s.MarkerBackgroundColor = RGB(255, 255, 255)
                         ElseIf plotSymbol = 31 Then
                             s.MarkerStyle = xlMarkerStyleSquare
                             s.MarkerForegroundColor = RGB(0, 0, 0)
@@ -329,7 +356,6 @@ For Each file In txtFileName
                         End If
                         
                         
-                        
                         ActiveChart.FullSeriesCollection(nSeries).Format.Line.Weight = 0.25
                         ActiveChart.FullSeriesCollection(nSeries).Format.Fill.Visible = msoFalse
                         
@@ -340,13 +366,13 @@ For Each file In txtFileName
                     ElseIf plotColor = 2 Then
                         s.MarkerForegroundColor = RGB(255, 0, 0)
                     ElseIf plotColor = 3 Then
-                        s.MarkerForegroundColor = RGB(0, 255, 0)
+                        s.MarkerForegroundColor = RGB(0, 200, 0)
                     ElseIf plotColor = 4 Then
                         s.MarkerForegroundColor = RGB(255, 192, 0)
                     ElseIf plotColor = 5 Then
-                        s.MarkerForegroundColor = RGB(0, 0, 255)
+                        s.MarkerForegroundColor = RGB(10, 10, 255)
                     ElseIf plotColor = 6 Then
-                        s.MarkerForegroundColor = RGB(185, 0, 127)
+                        s.MarkerForegroundColor = RGB(204, 51, 255)
                     Else
                         s.MarkerForegroundColor = RGB(0, 255, 255)
                     End If
@@ -408,9 +434,9 @@ For Each file In txtFileName
     
     ' Modification de la police et de sa taille
     With Selection.Format.TextFrame2.TextRange.Font
-        .NameComplexScript = "Helvetica"
-        .NameFarEast = "Helvetica"
-        .Name = "Helvetica"
+        .NameComplexScript = "Arial"
+        .NameFarEast = "Arial"
+        .Name = "Arial"
     End With
     
     Selection.Format.TextFrame2.TextRange.Font.Size = 6
@@ -418,7 +444,8 @@ For Each file In txtFileName
     ' on déplace le titre des x
     ActiveChart.Axes(xlCategory).AxisTitle.Select
     Selection.Left = 196#
-    Selection.Top = 165#
+'    Selection.Top = 165#
+    Selection.Top = 165.9
     
     ' déplacement et rotation du titre des y
     ActiveChart.Axes(xlValue).AxisTitle.Select
@@ -428,8 +455,10 @@ For Each file In txtFileName
     Application.CommandBars("Format Object").Visible = False
     
     ' Création des portions droites de flèches
-    ActiveChart.Shapes.AddConnector(msoConnectorStraight, 200, 177.7, _
-        200 + x_label_len * 5, 177.7).Select
+'    ActiveChart.Shapes.AddConnector(msoConnectorStraight, 200, 177.7, _
+'        200 + x_label_len * 5, 177.7).Select
+    ActiveChart.Shapes.AddConnector(msoConnectorStraight, 200, 178.6, _
+        200 + x_label_len * 5, 178.6).Select
         Selection.ShapeRange.Line.EndArrowheadStyle = msoConnectorStraight
     With Selection.ShapeRange.Line
         .Visible = msoTrue
@@ -453,8 +482,10 @@ For Each file In txtFileName
     End With
     
     ' création des pointes des flèches
+'    ActiveChart.Shapes.AddShape(msoShapeIsoscelesTriangle, 200 + x_label_len * 5 - 1.2, _
+'        176.5, 5, 2.5).Select
     ActiveChart.Shapes.AddShape(msoShapeIsoscelesTriangle, 200 + x_label_len * 5 - 1.2, _
-        176.5, 5, 2.5).Select
+        177.4, 5, 2.5).Select
     Selection.ShapeRange.Fill.Visible = msoFalse
     With Selection.ShapeRange.Line
         .Visible = msoTrue
