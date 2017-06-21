@@ -13,10 +13,12 @@ Dim y_label() As String
 Dim WordFileName As String
 Dim fileNumber As Integer
 Dim iSheet As Integer
-Dim delim As String
 
-delim = Application.DecimalSeparator
-Application.DecimalSeparator = "."
+If Application.International(xlDecimalSeparator) = "," Then
+    Dim convertDotToComma As Boolean
+    convertDotToComma = True
+    Application.DecimalSeparator = "."
+End If
 
 ' Selection du fichier Word dans lequel on souhaite sauvegarder les figures
 Call selectWordFile(WordFileName)
@@ -69,28 +71,32 @@ For Each file In txtFileName
     ActiveSheet.Shapes.AddChart.Select
     Dim sh As Variant 'mais quel est le type de cette variable ?!
     Set sh = Selection
-
+    
     ' Suppression de la bordure du cadre
     ActiveChart.ChartArea.Border.LineStyle = xlNone
-
+    
     Dim nSeries As Integer
     nSeries = 0
     Open file For Input As #1
-
+    
     Dim nLine As Integer
     For nLine = 1 To 7
-
+        
         Dim textline As String
         Line Input #1, textline
-
+        
+        If convertDotToComma = True Then
+            textline = Replace(textline, ".", ",")
+        End If
+        
         If nLine = 2 Then
-
+            
             Dim lineArray_temp() As String
             lineArray_temp = Split(textline, " ")
-
+            
             Dim j As Integer
             j = 0
-
+            
             Dim i As Integer
             For i = 0 To UBound(lineArray_temp)
                 If lineArray_temp(i) <> "" Then
@@ -106,13 +112,13 @@ For Each file In txtFileName
                     j = j + 1
                 End If
             Next
-
+            
             Dim DX As Double, Xmin  As Double, Xmax As Double, Xstart As Double
             DX = Val(lineArray(3))
             Xmin = Val(lineArray(0))
             Xmax = Val(lineArray(1))
             Xstart = Val(lineArray(2))
-
+            
             Dim DY As Double, Ymin  As Double, Ymax As Double, Ystart As Double
             DY = Val(lineArray(7))
             Ymin = Val(lineArray(4))
@@ -122,13 +128,13 @@ For Each file In txtFileName
             lineArray = Split(textline, "'")
             x_label(i_file) = lineArray(1)
             Call replaceGreekCharacters(x_label(i_file))
-
+            
             Dim countLess As Boolean
             countLess = False
-
+            
             Dim x_label_len As Double
             x_label_len = 0
-
+            
             Dim iter As Integer
             For iter = 1 To Len(x_label(i_file))
                 If Mid(x_label(i_file), iter, 1) = "{" Or Mid(x_label(i_file), iter, 1) = "^" Or Mid(x_label(i_file), iter, 1) = "_" Then
@@ -145,52 +151,59 @@ For Each file In txtFileName
                     End If
                 End If
             Next
-
+            
             'MsgBox (x_label_len)
-
+            
          ElseIf nLine = 6 Then
             lineArray = Split(textline, "'")
             y_label(i_file) = lineArray(1)
             Call replaceGreekCharacters(y_label(i_file))
         End If
-
+        
     Next nLine
-
+    
     ' Lecture du nombre de lignes du titre
     Line Input #1, textline
-
+    
     ' Lecture du titre
     Dim nLineTitle As Integer
     For nLineTitle = 1 To Int(textline)
         Line Input #1, textline
     Next
-
+    
     ' Lecture des données numériques
     Dim nLineValue As Integer
     nLineValue = 1
-
+    
     Dim i_row As Integer
     i_row = 1
-
+    
     ' Lecture du fichier .des jusqu'à la dernière ligne
     Do Until EOF(1)
-
+        
         Do While True ' On lit la série jusqu'à tomber sur une ligne de 8888.0
-
+        
             Line Input #1, textline
             textline = Trim(textline)
-
+            
+            'MsgBox (textline)
+            
             If nLineValue = 1 Then ' Lecture du style de dessin
-
+                
+                
+                If convertDotToComma = True Then
+                    textline = Replace(textline, ".", ",")
+                End If
+                
                 lineArray_temp = Split(textline, " ")
-
+                
                 j = 0
                 For i = 0 To UBound(lineArray_temp)
                     If lineArray_temp(i) <> "" Then
                         j = j + 1
                     End If
                 Next
-
+    
                 ReDim lineArray(j)
                 j = 0
                 For i = 0 To UBound(lineArray_temp)
@@ -199,25 +212,29 @@ For Each file In txtFileName
                         j = j + 1
                     End If
                 Next
-
+                
                 Dim plotStyle As Integer, plotColor As Integer, plotSymbol As Integer
                 plotStyle = lineArray(0)
                 plotColor = lineArray(1)
                 plotSymbol = lineArray(2)
-
+                
                 i_row = 0
-
+                
             Else
-
+                
+                If convertDotToComma = True Then
+                    textline = Replace(textline, ".", ",")
+                End If
+                
                 lineArray_temp = Split(textline, " ")
-
+                
                 j = 0
                 For i = 0 To UBound(lineArray_temp)
                     If lineArray_temp(i) <> "" Then
                         j = j + 1
                     End If
                 Next
-
+    
                 ReDim lineArray(j)
                 j = 0
                 For i = 0 To UBound(lineArray_temp)
@@ -226,38 +243,40 @@ For Each file In txtFileName
                         j = j + 1
                     End If
                 Next
-
+                
                 If (Abs(CDbl(Val(Trim(lineArray(0)))) - 8888#) > 1E-16) And (Abs(CDbl(Val(Trim(lineArray(1)))) - 8888#) > 1E-16) Then
                     'récupération des valeurs "trimmées"
                     x_temp(i_row) = CDbl(Val(lineArray(0)))
                     y_temp(i_row) = CDbl(Val(lineArray(1)))
 
                     i_row = i_row + 1
-
+                    
                 Else
-
+                
                     nSeries = nSeries + 1
                     Set s = ActiveChart.SeriesCollection.NewSeries
-
+                    
                     Dim x() As Double
                     Dim y() As Double
-                    ReDim x(i_row - 1)
-                    ReDim y(i_row - 1)
-                    For j = 0 To i_row - 1
+                    ReDim x(i_row - 1) 'x(nLineValue - 3)
+                    ReDim y(i_row - 1) 'y(nLineValue - 3)
+                    For j = 0 To i_row - 1 'nLineValue - 2
                         x(j) = x_temp(j)
+                        'MsgBox (Str(x(j)) & " | " & Str(x_temp(j)))
                         y(j) = y_temp(j)
                     Next
-
+                    
                     s.XValues = x
                     s.Values = y
-
+                    
                     If plotStyle = 0 Then
+                    
                         s.ChartType = xlXYScatterSmooth
-
+                        
                         Dim xlMarkerNone As Variant
                         s.MarkerStyle = xlMarkerNone
                         s.Format.Line.Visible = msoTrue
-
+                        
                         If plotColor = 1 Then
                             s.Format.Line.ForeColor.RGB = RGB(0, 0, 0)
                         ElseIf plotColor = 2 Then
@@ -265,21 +284,26 @@ For Each file In txtFileName
                         ElseIf plotColor = 3 Then
                             s.Format.Line.ForeColor.RGB = RGB(0, 255, 0)
                         ElseIf plotColor = 4 Then
-                            s.Format.Line.ForeColor.RGB = RGB(255, 255, 0)
+                            s.Format.Line.ForeColor.RGB = RGB(255, 192, 0)
                         ElseIf plotColor = 5 Then
                             s.Format.Line.ForeColor.RGB = RGB(0, 0, 255)
                         ElseIf plotColor = 6 Then
-                            s.Format.Line.ForeColor.RGB = RGB(255, 0, 255)
+                            s.Format.Line.ForeColor.RGB = RGB(185, 0, 127)
                         Else
                             s.Format.Line.ForeColor.RGB = RGB(0, 255, 255)
                         End If
+                        
+                        ActiveChart.FullSeriesCollection(nSeries).Format.Line.Weight = 0.5
+                        ActiveChart.FullSeriesCollection(nSeries).Format.Fill.Visible = msoFalse
 
                     ElseIf plotStyle = 1 Then
+                    
                         s.ChartType = xlXYScatter
+                        
                         s.Format.Line.Visible = msoTrue
                         s.Format.Line.Transparency = 1
                         s.MarkerSize = 3
-
+                        
                         If plotSymbol = 1 Then
                             s.MarkerStyle = xlMarkerStylePlus
                             s.MarkerForegroundColor = RGB(0, 0, 0)
@@ -317,9 +341,14 @@ For Each file In txtFileName
                             s.MarkerForegroundColor = RGB(0, 0, 0)
                             s.MarkerBackgroundColor = RGB(0, 0, 0)
                         End If
-
+                        
+                        
+                        
+                        ActiveChart.FullSeriesCollection(nSeries).Format.Line.Weight = 0.25
+                        ActiveChart.FullSeriesCollection(nSeries).Format.Fill.Visible = msoFalse
+                        
                     End If
-
+                    
                     If plotColor = 1 Then
                         s.MarkerForegroundColor = RGB(0, 0, 0)
                     ElseIf plotColor = 2 Then
@@ -327,62 +356,62 @@ For Each file In txtFileName
                     ElseIf plotColor = 3 Then
                         s.MarkerForegroundColor = RGB(0, 255, 0)
                     ElseIf plotColor = 4 Then
-                        s.MarkerForegroundColor = RGB(0, 255, 0)
+                        s.MarkerForegroundColor = RGB(255, 192, 0)
                     ElseIf plotColor = 5 Then
                         s.MarkerForegroundColor = RGB(0, 0, 255)
                     ElseIf plotColor = 6 Then
-                        s.MarkerForegroundColor = RGB(255, 0, 255)
+                        s.MarkerForegroundColor = RGB(185, 0, 127)
                     Else
                         s.MarkerForegroundColor = RGB(0, 255, 255)
                     End If
-
+                    
                     s.Select
                     Application.CommandBars("Format Object").Visible = False
-                    With Selection.Format.Line
-                        .Visible = msoTrue
-                        .Weight = 0.75
-                    End With
-
+                    'With Selection.Format.Line
+                    '    .Visible = msoTrue
+                    '    .Weight = 1#  '0.75
+                    'End With
+                
                     nLineValue = 1
                     i_row = 1
                     Erase x
                     Erase y
-
+                    
                     Exit Do
                 End If
-
+                
             End If
-
+            
             nLineValue = nLineValue + 1
-
+        
         Loop
-
+        
     Loop
-
+    
     Close #1
-
+    
     ' Réglage de l'épaisseur des marques et ajout de la transparence aux marqueurs
     For i = 1 To nSeries
-        ActiveChart.FullSeriesCollection(i).Format.Line.Weight = 0.3
-        ActiveChart.FullSeriesCollection(i).Format.Fill.Visible = msoFalse
+'        ActiveChart.FullSeriesCollection(i).Format.Line.Weight = 0.5
+'        ActiveChart.FullSeriesCollection(i).Format.Fill.Visible = msoFalse
     Next
-
+    
     ActiveChart.Axes(xlCategory).MinimumScale = Xmin
     ActiveChart.Axes(xlCategory).MaximumScale = Xmax
     ActiveChart.Axes(xlValue).MinimumScale = Ymin
     ActiveChart.Axes(xlValue).MaximumScale = Ymax
-
+    
     ' Suppression de la légende
     ActiveChart.Legend.Delete
-
+    
     ' Modification de la taille de l'objet graphique
     sh.Select
     sh.Height = 200
     sh.Width = 250
-
+    
     ' Modification de la taille du graphique contenu dans l'objet précédemment redimensionné
     ActiveChart.PlotArea.Width = 200#
-
+        
     ' Noms des axes
     With ActiveChart
         .Axes(xlCategory, xlPrimary).HasTitle = True
@@ -390,28 +419,28 @@ For Each file In txtFileName
         .Axes(xlValue, xlPrimary).HasTitle = True
         .Axes(xlValue, xlPrimary).AxisTitle.Characters.Text = y_label(i_file)
     End With
-
+    
     ' Modification de la police et de sa taille
     With Selection.Format.TextFrame2.TextRange.Font
         .NameComplexScript = "Helvetica"
         .NameFarEast = "Helvetica"
         .Name = "Helvetica"
     End With
-
+    
     Selection.Format.TextFrame2.TextRange.Font.Size = 6
-
+    
     ' on déplace le titre des x
     ActiveChart.Axes(xlCategory).AxisTitle.Select
     Selection.Left = 196#
     Selection.Top = 165#
-
+    
     ' déplacement et rotation du titre des y
     ActiveChart.Axes(xlValue).AxisTitle.Select
     Selection.Left = 202#
     Selection.Top = 17#
     Selection.Orientation = xlHorizontal
     Application.CommandBars("Format Object").Visible = False
-
+    
     ' Création des portions droites de flèches
     ActiveChart.Shapes.AddConnector(msoConnectorStraight, 200, 177.7, _
         200 + x_label_len * 5, 177.7).Select
@@ -422,9 +451,9 @@ For Each file In txtFileName
         .ForeColor.TintAndShade = 0
         .ForeColor.Brightness = 0
         .Transparency = 0
-        .Weight = 0.5
+        .Weight = 0.7
     End With
-
+    
     ActiveChart.Shapes.AddConnector(msoConnectorStraight, 202, _
         30, 202, 13.1).Select
         Selection.ShapeRange.Line.EndArrowheadStyle = msoConnectorStraight
@@ -434,9 +463,9 @@ For Each file In txtFileName
         .ForeColor.TintAndShade = 0
         .ForeColor.Brightness = 0
         .Transparency = 0
-        .Weight = 0.5
+        .Weight = 0.7
     End With
-
+    
     ' création des pointes des flèches
     ActiveChart.Shapes.AddShape(msoShapeIsoscelesTriangle, 200 + x_label_len * 5 - 1.2, _
         176.5, 5, 2.5).Select
@@ -447,10 +476,10 @@ For Each file In txtFileName
         .ForeColor.TintAndShade = 0
         .ForeColor.Brightness = 0
         .Transparency = 0
-        .Weight = 0.5
+        .Weight = 0.7
     End With
     Selection.ShapeRange.Rotation = 90
-
+    
     ActiveChart.Shapes.AddShape(msoShapeIsoscelesTriangle, 199.5, 8 + 2.3, 5, 2.5).Select
     Selection.ShapeRange.Fill.Visible = msoFalse
     With Selection.ShapeRange.Line
@@ -459,9 +488,9 @@ For Each file In txtFileName
         .ForeColor.TintAndShade = 0
         .ForeColor.Brightness = 0
         .Transparency = 0
-        .Weight = 0.5
+        .Weight = 0.7
     End With
-
+    
     ' Suppression des lignes horizontales dans la figure et ajout d'un cadre noir
     ActiveChart.Axes(xlValue).MajorGridlines.Select
     Selection.Delete
@@ -481,9 +510,9 @@ For Each file In txtFileName
     End With
     With Selection.Format.Line
         .Visible = msoTrue
-        .Weight = 0.5
+        .Weight = 0.7
     End With
-
+    
     ' Abscisse mise en noir et épaisissement
     ActiveChart.Axes(xlCategory).Select
     With Selection.Format.Line
@@ -496,9 +525,9 @@ For Each file In txtFileName
     Application.CommandBars("Format Object").Visible = False
     With Selection.Format.Line
         .Visible = msoTrue
-        .Weight = 0.5
+        .Weight = 0.7
     End With
-
+    
     ' Ordonnée mise en noir et épaisissement
     ActiveChart.Axes(xlValue).Select
     With Selection.Format.Line
@@ -511,31 +540,46 @@ For Each file In txtFileName
     Application.CommandBars("Format Object").Visible = False
     With Selection.Format.Line
         .Visible = msoTrue
-        .Weight = 0.5
+        .Weight = 0.7
     End With
-
-
+    
+    
     ActiveChart.Axes(xlCategory).MajorUnit = 2 * DX
     ActiveChart.Axes(xlValue).MajorUnit = 2 * DY
-
-
+    
+    
     ' Création des ticks mineures de l'axe des abscisses
     ActiveChart.Axes(xlCategory).Select
     ActiveChart.Axes(xlCategory).MinorUnit = ActiveChart.Axes(xlCategory).MajorUnit / 2
     Selection.MinorTickMark = xlOutside
-
+    
     ' Création des ticks mineures de l'axe des ordonnées
     ActiveChart.Axes(xlValue).Select
     ActiveChart.Axes(xlValue).MinorUnit = ActiveChart.Axes(xlValue).MajorUnit / 2
     Selection.MinorTickMark = xlOutside
-
+    
     ' Les valeurs des tiques sont mises en gras et en italique
     ActiveChart.Axes(xlCategory).TickLabels.Font.Bold = msoTrue
     ActiveChart.Axes(xlValue).TickLabels.Font.Bold = msoTrue
-
+    
     ActiveChart.Axes(xlValue).AxisTitle.Font.Italic = msoTrue
     ActiveChart.Axes(xlCategory).AxisTitle.Font.Italic = msoTrue
-
+    
+    ' Modification du format des nombres
+    ActiveChart.Axes(xlCategory).Select
+    If convertDotToComma = False Then
+        Selection.TickLabels.NumberFormat = "####0.###"
+    Else
+        Selection.TickLabels.NumberFormat = "####0,###0"
+    End If
+    
+    ActiveChart.Axes(xlValue).Select
+    If convertDotToComma = False Then
+        Selection.TickLabels.NumberFormat = "####0.###"
+    Else
+        Selection.TickLabels.NumberFormat = "####0,###0"
+    End If
+        
 Next
 
 ActiveSheet.Select
@@ -557,7 +601,7 @@ If FileLocked(WordFileName) Then
         End If
     Next
     Application.DisplayAlerts = True
-
+    
     ' Arrêt de l'exécution de la macro
     Exit Sub
 End If
@@ -582,33 +626,33 @@ For iCht = ActiveSheet.ChartObjects.Count To 1 Step -1
 
    ' copy objectchart as a picture
     ActiveSheet.ChartObjects(iCht).Copy
-
+    
     ''''''''''''''
     ' POWERPOINT '
     ''''''''''''''
-
+    
     Set newPres(iCht) = PPT.Presentations.Add(True)
     Set PPSlide = newPres(iCht).Slides.Add(1, 1)
-
+    
     ' Suppression de tous les éléments de la slide (titre, zone de texte...)
-'https://stackoverflow.com/questions/22811544/delete-all-shapes-of-a-powerpoint-slide
+    'https://stackoverflow.com/questions/22811544/delete-all-shapes-of-a-powerpoint-slide
     PPSlide.Shapes.Range.Delete
-
+    
     ' Modification de la taille de la slide
     With newPres(iCht).PageSetup
         .SlideWidth = 260
         .SlideHeight = 200
     End With
-
+    
     ' Paste chart
     newPres(iCht).Slides(1).Shapes.Paste.Select
-
+    
     ' on gère les indices et exposants ici car seul Powerpoint peut s'en occuper, pas Excel
    With newPres(iCht).Slides(1).Shapes(1)
         If (.HasChart = True) Then
             If (InStr(.Chart.Axes(xlCategory).AxisTitle.Characters.Text, "{") <> 0) Then
                 With .Chart.Axes(xlCategory)
-
+    
                     Dim mustSub As Boolean
                     mustSub = False
                     Dim mustSup As Boolean
@@ -616,10 +660,10 @@ For iCht = ActiveSheet.ChartObjects.Count To 1 Step -1
                     .AxisTitle.Characters.Text = "              "
                     Dim jChar As Integer
                     jChar = 1
-
+                    
                     Dim iChar As Integer
                     For iChar = 1 To Len(x_label(iCht))
-
+                                            
                         If Mid(x_label(iCht), iChar, 1) = "^" Or Mid(x_label(iCht), iChar, 1) = "{" Then
                             If Mid(x_label(iCht), iChar + 1, 1) = "{" Then
                                 mustSup = True
@@ -641,24 +685,24 @@ For iCht = ActiveSheet.ChartObjects.Count To 1 Step -1
                             jChar = jChar + 1
                         End If
                     Next
-
+                
                 End With
-
+                
             End If
-
+            
         End If
-
+        
         If (.HasChart = True) And (InStr(.Chart.Axes(xlValue).AxisTitle.Characters.Text, "{") <> 0) Then
-
+            
             With .Chart.Axes(xlValue)
-
+                
                 mustSub = False
                 mustSup = False
                 .AxisTitle.Characters.Text = "              "
                 jChar = 1
-
+                
                 For iChar = 1 To Len(y_label(iCht))
-
+                                        
                     If Mid(y_label(iCht), iChar, 1) = "^" Or Mid(y_label(iCht), iChar, 1) = "{" Then
                         If Mid(y_label(iCht), iChar + 1, 1) = "{" Then
                             mustSup = True
@@ -680,17 +724,17 @@ For iCht = ActiveSheet.ChartObjects.Count To 1 Step -1
                         jChar = jChar + 1
                     End If
                 Next
-
+     
             End With
         End If
-
+        
     End With
-
+    
     ' On enregistre la présentation contenant la slide
     newPres(iCht).SaveAs directory & "Plot" & Str(iCht) & ".pptx"
     newPres(iCht).Saved = True
     Dim WAIT As Double
-
+    
     ' Ce timer permet de laisser le temps à Powerpoint de sauvegarder la présentation
     ' La variable timeToWait correspond au temps en secondes donné à Powerpoint pour sauvegarder
     ' Augmenter la valeur de timeToWait s'il y a un problème au moment où Powerpoint se ferme
@@ -700,18 +744,18 @@ For iCht = ActiveSheet.ChartObjects.Count To 1 Step -1
     While Timer < WAIT + timeToWait
        DoEvents  'do nothing
     Wend
-
+    
     ''''''''
     ' WORD '
     ''''''''
-
+    
     WDapp.Documents(WDdoc).Activate
     WDdoc.InlineShapes.AddOLEObject ClassType:="PowerPoint.Show.12", _
     Filename:=directory & "Plot" & Str(iCht) & ".pptx", LinkToFile:=False, _
     DisplayAsIcon:=False
-
+    
     newPres(iCht).Close
-
+    
     ' Suppression des fichiers Powerpoint créés
     ' https://stackoverflow.com/questions/67835/deleting-a-file-in-vba
     Dim filetodelete As String
@@ -720,7 +764,7 @@ For iCht = ActiveSheet.ChartObjects.Count To 1 Step -1
       SetAttr filetodelete, vbNormal
     ' Then delete the file
       Kill filetodelete
-
+    
 Next
 
 ' Fermeture de Powerpoint
@@ -741,9 +785,6 @@ For iSheet = 1 To Sheets.Count
         Sheets(iSheet).Delete
     End If
 Next
-
-' on remet le délimiteur initial d'Excel
-Application.DecimalSeparator = delim
 
 ' Affichage du docuent Word
 WDapp.Documents.Open (WordFileName)
@@ -784,9 +825,9 @@ Private Sub openDialog(txtFileName() As String, fileNumber As Integer)
         Next
       End If
    End With
-
+   
    fileNumber = i
-
+   
 End Sub
 
 Private Sub selectWordFile(txtFileName As String)
@@ -819,7 +860,7 @@ Private Sub selectWordFile(txtFileName As String)
         Next
       End If
    End With
-
+   
 End Sub
 
 Sub replaceGreekCharacters(txt As String)
@@ -848,7 +889,7 @@ Sub replaceGreekCharacters(txt As String)
     txt = Replace(txt, "\Chi", ChrW(&H3A7))
     txt = Replace(txt, "\Psi", ChrW(&H3A8))
     txt = Replace(txt, "\Omega", ChrW(&H3A9))
-
+    
     txt = Replace(txt, "\alpha", ChrW(&H3B1))
     txt = Replace(txt, "\beta", ChrW(&H3B2))
     txt = Replace(txt, "\gamma", ChrW(&H3B3))
