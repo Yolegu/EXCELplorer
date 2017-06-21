@@ -14,11 +14,10 @@ Dim WordFileName As String
 Dim fileNumber As Integer
 Dim iSheet As Integer
 
-If Application.International(xlDecimalSeparator) = "," Then
-    Dim convertDotToComma As Boolean
-    convertDotToComma = True
-    Application.DecimalSeparator = "."
-End If
+Dim delim As String
+ 
+delim = Application.DecimalSeparator
+Application.DecimalSeparator = "."
 
 ' Selection du fichier Word dans lequel on souhaite sauvegarder les figures
 Call selectWordFile(WordFileName)
@@ -84,10 +83,6 @@ For Each file In txtFileName
         
         Dim textline As String
         Line Input #1, textline
-        
-        If convertDotToComma = True Then
-            textline = Replace(textline, ".", ",")
-        End If
         
         If nLine = 2 Then
             
@@ -190,11 +185,6 @@ For Each file In txtFileName
             
             If nLineValue = 1 Then ' Lecture du style de dessin
                 
-                
-                If convertDotToComma = True Then
-                    textline = Replace(textline, ".", ",")
-                End If
-                
                 lineArray_temp = Split(textline, " ")
                 
                 j = 0
@@ -221,10 +211,6 @@ For Each file In txtFileName
                 i_row = 0
                 
             Else
-                
-                If convertDotToComma = True Then
-                    textline = Replace(textline, ".", ",")
-                End If
                 
                 lineArray_temp = Split(textline, " ")
                 
@@ -567,18 +553,10 @@ For Each file In txtFileName
     
     ' Modification du format des nombres
     ActiveChart.Axes(xlCategory).Select
-    If convertDotToComma = False Then
-        Selection.TickLabels.NumberFormat = "####0.###"
-    Else
-        Selection.TickLabels.NumberFormat = "####0,###0"
-    End If
+    Selection.TickLabels.NumberFormat = "####0.###0"
     
     ActiveChart.Axes(xlValue).Select
-    If convertDotToComma = False Then
-        Selection.TickLabels.NumberFormat = "####0.###"
-    Else
-        Selection.TickLabels.NumberFormat = "####0,###0"
-    End If
+    Selection.TickLabels.NumberFormat = "####0.###"
         
 Next
 
