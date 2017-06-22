@@ -41,7 +41,10 @@ Pour utiliser la virgule "," en tant que délimiteur décimal dans Excel mais po
 
 # Codes des couleurs et formes
 
-<p>Some Markdown text with <span style="color:blue">some <em>blue</em> text</span>.</p>
+* Couleurs
+ * 1 = noir / RGB = (0, 0, 0)
+ * 2 = rouge / RGB = (255, 0, 0)
+ * 3 = noir / RGB = (0, 0, 0)
 
 # Redimensionnement des graphiques dans Word
 
