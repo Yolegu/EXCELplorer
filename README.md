@@ -41,7 +41,7 @@ Le séparateur décimal des graphiques est celui défini dans les options régio
   * 0 = traits pleins
   * 1 = traits pleins & marqueurs
 
-![alt text](https://github.com/Yolegu/EXCELplorer/tree/master/img/couleurs_marqueurs.png)
+![alt text](https://github.com/Yolegu/EXCELplorer/blob/master/img/couleurs_marqueurs.png?raw=true)
    
 # Caractères grecs
 
