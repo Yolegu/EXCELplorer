@@ -45,6 +45,19 @@ Pour utiliser la virgule "," en tant que délimiteur décimal dans Excel mais po
   * 1 = noir / RGB = (0, 0, 0)
   * 2 = rouge / RGB = (255, 0, 0)
   * 3 = noir / RGB = (0, 0, 0)
+  * 4 = orange / RGB = (255, 192, 0)
+  * 5 = bleu marine / RGB = (10, 10, 255)
+  * 6 = violet / RGB = (204, 51, 255)
+  * 7 = cyan / RGB = (0, 255, 255)
+  
+* Formes
+  * 1 = +
+  * 2 = x
+  * 3 = □
+  * 31 = ■
+  * 4 = ◇
+  * 41 = ◆
+  * 5 = 
 
 # Redimensionnement des graphiques dans Word
 
