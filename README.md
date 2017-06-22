@@ -74,6 +74,8 @@ Pour utiliser la virgule "," en tant que délimiteur décimal dans Excel mais po
    
 # Caractères grecs
 
+| Majuscule | Code | Minuscule | Code |
+| -----------:| ------:| -----------:| -----------:|
 | Α	| \Alpha	| α	| \alpha
 | Β	| \Beta		| β	| \beta
 Γ	\Gamma		γ	\gamma
