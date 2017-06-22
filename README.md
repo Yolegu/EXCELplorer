@@ -37,8 +37,8 @@ Le séparateur décimal des graphiques est celui défini dans les options régio
 
 # Indices et exposants
 
-Les indices et exposants peuvent être utilisés dans les légendes :
-* indice : "texte normal^{mon texte en indice}"
+Les indices et exposants peuvent être utilisés dans les titres des axes :
+* indice : "texte normal_{mon texte en indice}"
 * exposant : "texte normal^{mon texte en exposant}"
 
 # Codes pour les marqueurs
@@ -46,6 +46,8 @@ Les indices et exposants peuvent être utilisés dans les légendes :
 ![alt text](https://github.com/Yolegu/EXCELplorer/blob/master/img/couleurs_marqueurs.png?raw=true)
    
 # Caractères grecs
+
+Les caractères grecs peuvent être utilisés dans les titres des axes en spécifiant un ou plusieur des caractères suivants : 
 
 | Majuscule | Code | Minuscule | Code |
 | ----------| -----| ----------| -----|
