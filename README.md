@@ -93,13 +93,13 @@ Pour utiliser la virgule "," en tant que délimiteur décimal dans Excel mais po
 | Ο	| \Omicron		| ο	| \omicron| 
 | Π	| \Pi		| π	| \pi| 
 | Ρ	| \Rho		| ρ	| \rho| 
-Σ	\Sigma		σ	\sigma
-Τ	\Tau		τ	\tau
-Υ	\Upsilon		υ	\upsilon
-Φ	\Phi		φ	\phi
-Χ	\Chi		χ	\chi
-Ψ	\Psi		ψ	\psi
-Ω	\Omega		ω	\omega
+| Σ	| \Sigma		| σ	| \sigma| 
+| Τ	| \Tau		| τ	| \tau| 
+| Υ	| \Upsilon		| υ	| \upsilon| 
+| Φ	| \Phi		| φ	| \phi| 
+| Χ	| \Chi		| χ	| \chi| 
+| Ψ	| \Psi		| ψ	| \psi| 
+| Ω	| \Omega		| ω	| \omega| 
 
 # Redimensionnement des graphiques dans Word
 
