@@ -15,6 +15,18 @@ Dim fileNumber As Integer
 Dim iSheet As Integer
 
 Dim delim As String
+Dim systemSeparatorsUsed As Boolean
+
+''''''''''' on force Excel à utiliser le séparateur des options afin de pouvoir le modifier librement
+
+If Application.UseSystemSeparators = True Then
+    systemSeparatorsUsed = True
+    Application.UseSystemSeparators = False
+Else
+    systemSeparatorsUsed = False
+End If
+ 
+'''''''''''
  
 delim = Application.DecimalSeparator
 Application.DecimalSeparator = "."
@@ -854,6 +866,15 @@ For iSheet = 1 To Sheets.Count
         Sheets(iSheet).Delete
     End If
 Next
+
+''''''''''' retour au délimiteur utilisateur
+
+If systemSeparatorsUsed = True Then
+    Application.DecimalSeparator = delim
+    Application.UseSystemSeparators = True
+End If
+ 
+'''''''''''
 
 ' Affichage du docuent Word
 WDapp.Documents.Open (WordFileName)
