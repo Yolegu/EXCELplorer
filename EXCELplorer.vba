@@ -284,105 +284,97 @@ For Each file In txtFileName
                         
                         Dim xlMarkerNone As Variant
                         s.MarkerStyle = xlMarkerNone
-                        s.Format.Line.Visible = msoTrue
+                        s.format.Line.Visible = msoTrue
                         
                         If plotColor = 1 Then
-                            s.Format.Line.ForeColor.RGB = RGB(0, 0, 0)
+                            s.format.Line.ForeColor.RGB = RGB(0, 0, 0)
                         ElseIf plotColor = 2 Then
-                            s.Format.Line.ForeColor.RGB = RGB(255, 0, 0)
+                            s.format.Line.ForeColor.RGB = RGB(255, 0, 0)
                         ElseIf plotColor = 3 Then
-                            s.Format.Line.ForeColor.RGB = RGB(0, 200, 0)
+                            s.format.Line.ForeColor.RGB = RGB(0, 200, 0)
                         ElseIf plotColor = 4 Then
-                            s.Format.Line.ForeColor.RGB = RGB(255, 192, 0)
+                            s.format.Line.ForeColor.RGB = RGB(255, 192, 0)
                         ElseIf plotColor = 5 Then
-                            s.Format.Line.ForeColor.RGB = RGB(10, 10, 255)
+                            s.format.Line.ForeColor.RGB = RGB(10, 10, 255)
                         ElseIf plotColor = 6 Then
-                            s.Format.Line.ForeColor.RGB = RGB(204, 51, 255)
+                            s.format.Line.ForeColor.RGB = RGB(204, 51, 255)
                         Else
-                            s.Format.Line.ForeColor.RGB = RGB(0, 255, 255)
+                            s.format.Line.ForeColor.RGB = RGB(0, 255, 255)
                         End If
                         
-                        ActiveChart.FullSeriesCollection(nSeries).Format.Line.Weight = 0.5
-                        ActiveChart.FullSeriesCollection(nSeries).Format.Fill.Visible = msoFalse
+                        ActiveChart.FullSeriesCollection(nSeries).format.Line.Weight = 0.5
+                        ActiveChart.FullSeriesCollection(nSeries).format.Fill.Visible = msoFalse
 
                     ElseIf plotStyle = 1 Then
                     
                         s.ChartType = xlXYScatter
                         
-                        s.Format.Line.Visible = msoTrue
-                        s.Format.Line.Transparency = 1
+                        s.format.Line.Visible = msoTrue
+                        s.format.Line.Transparency = 1
                         s.MarkerSize = 3
                         
+                        If plotColor = 1 Then
+                            s.MarkerForegroundColor = RGB(0, 0, 0)
+                        ElseIf plotColor = 2 Then
+                            s.MarkerForegroundColor = RGB(255, 0, 0)
+                        ElseIf plotColor = 3 Then
+                            s.MarkerForegroundColor = RGB(0, 200, 0)
+                        ElseIf plotColor = 4 Then
+                            s.MarkerForegroundColor = RGB(255, 192, 0)
+                        ElseIf plotColor = 5 Then
+                            s.MarkerForegroundColor = RGB(10, 10, 255)
+                        ElseIf plotColor = 6 Then
+                            s.MarkerForegroundColor = RGB(204, 51, 255)
+                        Else
+                            s.MarkerForegroundColor = RGB(0, 255, 255)
+                        End If
+                        
                         If plotSymbol = 1 Then
+                            ActiveChart.FullSeriesCollection(nSeries).format.Fill.Visible = msoFalse
                             s.MarkerStyle = xlMarkerStylePlus
-                            s.MarkerForegroundColor = RGB(0, 0, 0)
-                            s.MarkerBackgroundColor = RGB(0, 0, 0)
                         ElseIf plotSymbol = 2 Then
+                            ActiveChart.FullSeriesCollection(nSeries).format.Fill.Visible = msoFalse
                             s.MarkerStyle = xlMarkerStyleX
-                            s.MarkerForegroundColor = RGB(0, 0, 0)
-                            s.MarkerBackgroundColor = RGB(0, 0, 0)
                         ElseIf plotSymbol = 3 Then
+                            ActiveChart.FullSeriesCollection(nSeries).format.Fill.Visible = msoFalse
                             s.MarkerStyle = xlMarkerStyleSquare
-                            s.MarkerForegroundColor = RGB(0, 0, 0)
-                            s.MarkerBackgroundColor = RGB(255, 255, 255)
                         ElseIf plotSymbol = 4 Then
+                            ActiveChart.FullSeriesCollection(nSeries).format.Fill.Visible = msoFalse
                             s.MarkerStyle = xlMarkerStyleDiamond
-                            s.MarkerForegroundColor = RGB(0, 0, 0)
-                            s.MarkerBackgroundColor = RGB(255, 255, 255)
                         ElseIf plotSymbol = 5 Then
+                            ActiveChart.FullSeriesCollection(nSeries).format.Fill.Visible = msoFalse
                             s.MarkerStyle = xlMarkerStyleStar
-                            s.MarkerForegroundColor = RGB(0, 0, 0)
-                            s.MarkerBackgroundColor = RGB(0, 0, 0)
                         ElseIf plotSymbol = 6 Then
+                            ActiveChart.FullSeriesCollection(nSeries).format.Fill.Visible = msoFalse
                             s.MarkerStyle = xlMarkerStyleCircle
-                            s.MarkerForegroundColor = RGB(0, 0, 0)
-                            s.MarkerBackgroundColor = RGB(255, 255, 255)
                         ElseIf plotSymbol = 7 Then
+                            ActiveChart.FullSeriesCollection(nSeries).format.Fill.Visible = msoFalse
                             s.MarkerStyle = xlMarkerStyleTriangle
-                            s.MarkerForegroundColor = RGB(0, 0, 0)
-                            s.MarkerBackgroundColor = RGB(255, 255, 255)
                         ElseIf plotSymbol = 31 Then
+                            ActiveChart.FullSeriesCollection(nSeries).format.Fill.Visible = msoTrue
                             s.MarkerStyle = xlMarkerStyleSquare
-                            s.MarkerForegroundColor = RGB(0, 0, 0)
-                            s.MarkerBackgroundColor = RGB(0, 0, 0)
+                            s.MarkerBackgroundColor = s.MarkerForegroundColor
                         ElseIf plotSymbol = 41 Then
+                            ActiveChart.FullSeriesCollection(nSeries).format.Fill.Visible = msoTrue
                             s.MarkerStyle = xlMarkerStyleDiamond
-                            s.MarkerForegroundColor = RGB(0, 0, 0)
-                            s.MarkerBackgroundColor = RGB(0, 0, 0)
+                            s.MarkerBackgroundColor = s.MarkerForegroundColor
                         ElseIf plotSymbol = 61 Then
-                            s.MarkerStyle = xlMarkerStyleSquare
-                            s.MarkerForegroundColor = RGB(0, 0, 0)
-                            s.MarkerBackgroundColor = RGB(0, 0, 0)
+                            ActiveChart.FullSeriesCollection(nSeries).format.Fill.Visible = msoTrue
+                            s.MarkerStyle = xlMarkerStyleCircle
+                            s.MarkerBackgroundColor = s.MarkerForegroundColor
+                        ElseIf plotSymbol = 71 Then
+                            ActiveChart.FullSeriesCollection(nSeries).format.Fill.Visible = msoTrue
+                            s.MarkerStyle = xlMarkerStyleTriangle
+                            s.MarkerBackgroundColor = s.MarkerForegroundColor
                         End If
                         
                         
-                        ActiveChart.FullSeriesCollection(nSeries).Format.Line.Weight = 0.25
-                        ActiveChart.FullSeriesCollection(nSeries).Format.Fill.Visible = msoFalse
+                        ActiveChart.FullSeriesCollection(nSeries).format.Line.Weight = 0.25
                         
-                    End If
-                    
-                    If plotColor = 1 Then
-                        s.MarkerForegroundColor = RGB(0, 0, 0)
-                    ElseIf plotColor = 2 Then
-                        s.MarkerForegroundColor = RGB(255, 0, 0)
-                    ElseIf plotColor = 3 Then
-                        s.MarkerForegroundColor = RGB(0, 200, 0)
-                    ElseIf plotColor = 4 Then
-                        s.MarkerForegroundColor = RGB(255, 192, 0)
-                    ElseIf plotColor = 5 Then
-                        s.MarkerForegroundColor = RGB(10, 10, 255)
-                    ElseIf plotColor = 6 Then
-                        s.MarkerForegroundColor = RGB(204, 51, 255)
-                    Else
-                        s.MarkerForegroundColor = RGB(0, 255, 255)
                     End If
                     
                     s.Select
                     Application.CommandBars("Format Object").Visible = False
-                    'With Selection.Format.Line
-                    '    .Visible = msoTrue
-                    '    .Weight = 1#  '0.75
-                    'End With
                 
                     nLineValue = 1
                     i_row = 1
@@ -402,12 +394,7 @@ For Each file In txtFileName
     
     Close #1
     
-    ' Réglage de l'épaisseur des marques et ajout de la transparence aux marqueurs
-    For i = 1 To nSeries
-'        ActiveChart.FullSeriesCollection(i).Format.Line.Weight = 0.5
-'        ActiveChart.FullSeriesCollection(i).Format.Fill.Visible = msoFalse
-    Next
-    
+    ' Modification de l'échelle des x et y
     ActiveChart.Axes(xlCategory).MinimumScale = Xmin
     ActiveChart.Axes(xlCategory).MaximumScale = Xmax
     ActiveChart.Axes(xlValue).MinimumScale = Ymin
@@ -433,13 +420,13 @@ For Each file In txtFileName
     End With
     
     ' Modification de la police et de sa taille
-    With Selection.Format.TextFrame2.TextRange.Font
+    With Selection.format.TextFrame2.TextRange.Font
         .NameComplexScript = "Arial"
         .NameFarEast = "Arial"
         .Name = "Arial"
     End With
     
-    Selection.Format.TextFrame2.TextRange.Font.Size = 6
+    Selection.format.TextFrame2.TextRange.Font.Size = 6
     
     ' on déplace le titre des x
     ActiveChart.Axes(xlCategory).AxisTitle.Select
@@ -466,7 +453,7 @@ For Each file In txtFileName
         .ForeColor.TintAndShade = 0
         .ForeColor.Brightness = 0
         .Transparency = 0
-        .Weight = 0.7
+        .Weight = 0.5
     End With
     
     ActiveChart.Shapes.AddConnector(msoConnectorStraight, 202, _
@@ -478,7 +465,7 @@ For Each file In txtFileName
         .ForeColor.TintAndShade = 0
         .ForeColor.Brightness = 0
         .Transparency = 0
-        .Weight = 0.7
+        .Weight = 0.5
     End With
     
     ' création des pointes des flèches
@@ -493,7 +480,7 @@ For Each file In txtFileName
         .ForeColor.TintAndShade = 0
         .ForeColor.Brightness = 0
         .Transparency = 0
-        .Weight = 0.7
+        .Weight = 0.5
     End With
     Selection.ShapeRange.Rotation = 90
     
@@ -505,34 +492,34 @@ For Each file In txtFileName
         .ForeColor.TintAndShade = 0
         .ForeColor.Brightness = 0
         .Transparency = 0
-        .Weight = 0.7
+        .Weight = 0.5
     End With
     
     ' Suppression des lignes horizontales dans la figure et ajout d'un cadre noir
     ActiveChart.Axes(xlValue).MajorGridlines.Select
     Selection.Delete
     ActiveChart.PlotArea.Select
-    With Selection.Format.Line
+    With Selection.format.Line
         .Visible = msoTrue
         .ForeColor.ObjectThemeColor = msoThemeColorAccent1
         .ForeColor.TintAndShade = 0
         .ForeColor.Brightness = 0
     End With
-    With Selection.Format.Line
+    With Selection.format.Line
         .Visible = msoTrue
         .ForeColor.ObjectThemeColor = msoThemeColorText1
         .ForeColor.TintAndShade = 0
         .ForeColor.Brightness = 0
         .Transparency = 0
     End With
-    With Selection.Format.Line
+    With Selection.format.Line
         .Visible = msoTrue
-        .Weight = 0.7
+        .Weight = 0.5
     End With
     
     ' Abscisse mise en noir et épaisissement
     ActiveChart.Axes(xlCategory).Select
-    With Selection.Format.Line
+    With Selection.format.Line
         .Visible = msoTrue
         .ForeColor.ObjectThemeColor = msoThemeColorText1
         .ForeColor.TintAndShade = 0
@@ -540,14 +527,14 @@ For Each file In txtFileName
         .Transparency = 0
     End With
     Application.CommandBars("Format Object").Visible = False
-    With Selection.Format.Line
+    With Selection.format.Line
         .Visible = msoTrue
-        .Weight = 0.7
+        .Weight = 0.5
     End With
     
     ' Ordonnée mise en noir et épaisissement
     ActiveChart.Axes(xlValue).Select
-    With Selection.Format.Line
+    With Selection.format.Line
         .Visible = msoTrue
         .ForeColor.ObjectThemeColor = msoThemeColorText1
         .ForeColor.TintAndShade = 0
@@ -555,9 +542,9 @@ For Each file In txtFileName
         .Transparency = 0
     End With
     Application.CommandBars("Format Object").Visible = False
-    With Selection.Format.Line
+    With Selection.format.Line
         .Visible = msoTrue
-        .Weight = 0.7
+        .Weight = 0.5
     End With
     
     
@@ -583,11 +570,79 @@ For Each file In txtFileName
     ActiveChart.Axes(xlCategory).AxisTitle.Font.Italic = msoTrue
     
     ' Modification du format des nombres
+    
+    ' format des x
+    
     ActiveChart.Axes(xlCategory).Select
-    Selection.TickLabels.NumberFormat = "####0.###0"
+    Dim n_dec_dx As Integer
+    Dim n_dec_xmin As Integer
+    Dim n_dec As Integer
+    Dim format As String
+    
+    n_dec_dx = 0
+
+    format = "####0.0"
+    
+    If InStr(CStr(2 * DX), ".") Or InStr(CStr(Xmin), ".") <> 0 Then
+        
+        If InStr(CStr(Xmin), ".") <> 0 Then
+            n_dec_xmin = Len(Split(CStr(Xmin), ".")(1))
+        Else
+            n_dec_xmin = 0
+        End If
+        
+        If InStr(CStr(2 * DX), ".") <> 0 Then
+            n_dec_dx = Len(Split(CStr(2 * DX), ".")(1))
+        Else
+            n_dec_dx = 0
+        End If
+
+        n_dec = Application.Max(n_dec_dx, n_dec_xmin)
+        
+        For i = 2 To n_dec
+            format = format & "0"
+        Next
+        
+    End If
+    
+    ActiveChart.Axes(xlCategory).Select
+    Selection.TickLabels.NumberFormat = format
+    
+    ' format des y
+    
+    ActiveChart.Axes(xlCategory).Select
+    Dim n_dec_dy As Integer
+    Dim n_dec_ymin As Integer
+    
+    n_dec_dy = 0
+
+    format = "####0.0"
+    
+    If InStr(CStr(2 * DY), ".") Or InStr(CStr(Ymin), ".") <> 0 Then
+        
+        If InStr(CStr(Ymin), ".") <> 0 Then
+            n_dec_ymin = Len(Split(CStr(Ymin), ".")(1))
+        Else
+            n_dec_ymin = 0
+        End If
+        
+        If InStr(CStr(2 * DY), ".") <> 0 Then
+            n_dec_dy = Len(Split(CStr(2 * DY), ".")(1))
+        Else
+            n_dec_dy = 0
+        End If
+
+        n_dec = Application.Max(n_dec_dy, n_dec_ymin)
+        
+        For i = 2 To n_dec
+            format = format & "0"
+            'MsgBox format
+        Next
+        
+    End If
     
     ActiveChart.Axes(xlValue).Select
-    Selection.TickLabels.NumberFormat = "####0.###"
+    Selection.TickLabels.NumberFormat = format
         
 Next
 
@@ -647,10 +702,10 @@ For iCht = ActiveSheet.ChartObjects.Count To 1 Step -1
     'https://stackoverflow.com/questions/22811544/delete-all-shapes-of-a-powerpoint-slide
     PPSlide.Shapes.Range.Delete
     
-    ' Modification de la taille de la slide
+    ' Modification de la taille de la slide pour être exactement de la même taille que le graphique
     With newPres(iCht).PageSetup
-        .SlideWidth = 260
-        .SlideHeight = 200
+        .SlideWidth = 255.118 '260
+        .SlideHeight = 204.9449 '200
     End With
     
     ' Paste chart
@@ -762,6 +817,11 @@ For iCht = ActiveSheet.ChartObjects.Count To 1 Step -1
     WDdoc.InlineShapes.AddOLEObject ClassType:="PowerPoint.Show.12", _
     Filename:=directory & "Plot" & Str(iCht) & ".pptx", LinkToFile:=False, _
     DisplayAsIcon:=False
+    
+    With WDapp.ActiveDocument.InlineShapes(1)
+        .Height = 180
+        .ScaleWidth = 180
+    End With
     
     newPres(iCht).Close
     
