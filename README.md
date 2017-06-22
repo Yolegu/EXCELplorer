@@ -71,6 +71,33 @@ Pour utiliser la virgule "," en tant que délimiteur décimal dans Excel mais po
    * 0 2 0 : trait rouge sans marqueur
    * 1 4 7 : trait jaune avec marqueur triangulaire jaune vide
    * 1 6 61 : trait violet avec marquer rond violet plein
+   
+# Caractères grecs
+
+| Α	| \Alpha	| α	| \alpha
+| Β	| \Beta		| β	| \beta
+Γ	\Gamma		γ	\gamma
+Δ	\Delta		δ	\delta
+Ε	\Epsilon		ε	\epsilon
+Ζ	\Zeta		ζ	\zeta
+Η	\Eta		η	\eta
+Θ	\Theta		θ	\theta
+Ι	\Iota		ι	\iota
+Κ	\Kappa		κ	\kappa
+Λ	\Lambda		λ	\lambda
+Μ	\Mu		μ	\mu
+Ν	\Nu		ν	\nu
+Ξ	\Xi		ξ	\xi
+Ο	\Omicron		ο	\omicron
+Π	\Pi		π	\pi
+Ρ	\Rho		ρ	\rho
+Σ	\Sigma		σ	\sigma
+Τ	\Tau		τ	\tau
+Υ	\Upsilon		υ	\upsilon
+Φ	\Phi		φ	\phi
+Χ	\Chi		χ	\chi
+Ψ	\Psi		ψ	\psi
+Ω	\Omega		ω	\omega
 
 # Redimensionnement des graphiques dans Word
 
