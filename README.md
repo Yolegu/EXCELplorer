@@ -31,9 +31,9 @@ A partir de ce moment, la macro génère les graphiques de la manière suivante 
 * chaque graphique Powerpoint créé est ensuite copié dans le document Word spécifié à la première étape de l'exécution de la macro. Le graphique Excel est inséré dans un OLE "Diapositive Microsoft Powerpoint". Le dernier graphique inséré est placé en tête du document.
 * les graphiques générés avec Excel ainsi que les fichiers Powerpoint temporaires sont finalement supprimés. Au final, seul le document Word sélectionné par l'utilisateur à été modifié.
 
-# Comment configurer Excel pour utiliser le point comme séparateur décimal uniquement dans les graphiques
+# Choix du séparateur décimal
 
-Pour utiliser la virgule "," en tant que délimiteur décimal dans Excel mais pour qu'EXCELplorer créer des graphiques avec des points comme symbole décimal il faut dans Excel aller dans "Fichier \ Options \ Options avancées \ Options d'édition" et décocher "Utiliser les séparateurs système" et spécifier que la virgule "," est le séparateur décimal.
+Dans "Fichier \ Options \ Options avancées \ Options d'édition", décocher "Utiliser les séparateurs système" et spécifier le séparateur décimal désiré.
 
 <p align="center">
  <img src="/img/decimal_format_excel.png?raw=true" alt="Sublime's custom image"/>
