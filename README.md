@@ -76,23 +76,23 @@ Pour utiliser la virgule "," en tant que délimiteur décimal dans Excel mais po
 
 | Majuscule | Code | Minuscule | Code |
 | -----------:| ------:| -----------:| -----------:|
-| Α	| \Alpha	| α	| \alpha
-| Β	| \Beta		| β	| \beta
-Γ	\Gamma		γ	\gamma
-Δ	\Delta		δ	\delta
-Ε	\Epsilon		ε	\epsilon
-Ζ	\Zeta		ζ	\zeta
-Η	\Eta		η	\eta
-Θ	\Theta		θ	\theta
-Ι	\Iota		ι	\iota
-Κ	\Kappa		κ	\kappa
-Λ	\Lambda		λ	\lambda
-Μ	\Mu		μ	\mu
-Ν	\Nu		ν	\nu
-Ξ	\Xi		ξ	\xi
-Ο	\Omicron		ο	\omicron
-Π	\Pi		π	\pi
-Ρ	\Rho		ρ	\rho
+| Α	| \Alpha	| α	| \alpha| 
+| Β	| \Beta		| β	| \beta| 
+| Γ	| \Gamma		| γ	| \gamma| 
+| Δ	| \Delta	| 	δ	| \delta| 
+| Ε	| \Epsilon| 		ε| 	\epsilon| 
+| Ζ	| \Zeta		| ζ	| \zeta| 
+| Η	| \Eta	| 	η	| \eta| 
+| Θ	| \Theta		| θ	| \theta| 
+| Ι	| \Iota		| ι	| \iota| 
+| Κ	| \Kappa		| κ	| \kappa| 
+| Λ	| \Lambda		| λ	| \lambda
+| Μ	| \Mu		| μ	| \mu| 
+| Ν	| \Nu		| ν	| \nu| 
+| Ξ	| \Xi		| ξ	| \xi| 
+| Ο	| \Omicron		| ο	| \omicron| 
+| Π	| \Pi		| π	| \pi| 
+| Ρ	| \Rho		| ρ	| \rho| 
 Σ	\Sigma		σ	\sigma
 Τ	\Tau		τ	\tau
 Υ	\Upsilon		υ	\upsilon
