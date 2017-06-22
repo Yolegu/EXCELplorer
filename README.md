@@ -35,11 +35,13 @@ A partir de ce moment, la macro génère les graphiques de la manière suivante 
 
 Le séparateur décimal des graphiques est celui défini dans les options régionales de l'ordinateur.
 
-# Codes des couleurs et formes
+# Indices et exposants
 
-* Type de courbe
-  * 0 = traits pleins
-  * 1 = traits pleins & marqueurs
+Les indices et exposants peuvent être utilisés dans les légendes :
+* indice : "texte normal^{mon texte en indice}"
+* exposant : "texte normal^{mon texte en exposant}"
+
+# Codes pour les marqueurs
 
 ![alt text](https://github.com/Yolegu/EXCELplorer/blob/master/img/couleurs_marqueurs.png?raw=true)
    
