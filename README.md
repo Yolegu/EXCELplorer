@@ -41,32 +41,7 @@ Le séparateur décimal des graphiques est celui défini dans les options régio
   * 0 = traits pleins
   * 1 = traits pleins & marqueurs
 
-* Couleurs de la ligne et des marqueurs
-  * 1 = noir / RGB = (0, 0, 0)
-  * 2 = rouge / RGB = (255, 0, 0)
-  * 3 = noir / RGB = (0, 0, 0)
-  * 4 = orange / RGB = (255, 192, 0)
-  * 5 = bleu marine / RGB = (10, 10, 255)
-  * 6 = violet / RGB = (204, 51, 255)
-  * 7 = cyan / RGB = (0, 255, 255)
-  
-* Formes des marqueurs
-  * 1 = +
-  * 2 = x
-  * 3 = □
-  * 31 = ■
-  * 4 = ◇
-  * 41 = ◆
-  * 5 = ＊
-  * 6 = ○
-  * 61 = ●
-  * 7 = △
-  * 71 = ▲
-  
- * Exemples
-   * 0 2 0 : trait rouge sans marqueur
-   * 1 4 7 : trait jaune avec marqueur triangulaire jaune vide
-   * 1 6 61 : trait violet avec marquer rond violet plein
+![alt text](https://github.com/Yolegu/EXCELplorer/tree/master/img/couleurs_marqueurs.png)
    
 # Caractères grecs
 
