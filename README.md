@@ -66,6 +66,11 @@ Pour utiliser la virgule "," en tant que délimiteur décimal dans Excel mais po
   * 61 = ●
   * 7 = △
   * 71 = ▲
+  
+ * Exemples
+   * 0 2 0 : trait rouge sans marqueur
+   * 1 4 7 : trait jaune avec marqueur triangulaire jaune vide
+   * 1 6 61 : trait violet avec marquer rond violet plein
 
 # Redimensionnement des graphiques dans Word
 
