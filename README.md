@@ -41,7 +41,11 @@ Pour utiliser la virgule "," en tant que délimiteur décimal dans Excel mais po
 
 # Codes des couleurs et formes
 
-* Couleurs
+* Type de courbe
+  * 0 = traits pleins
+  * 1 = traits pleins & marqueurs
+
+* Couleurs de la ligne et des marqueurs
   * 1 = noir / RGB = (0, 0, 0)
   * 2 = rouge / RGB = (255, 0, 0)
   * 3 = noir / RGB = (0, 0, 0)
@@ -50,7 +54,7 @@ Pour utiliser la virgule "," en tant que délimiteur décimal dans Excel mais po
   * 6 = violet / RGB = (204, 51, 255)
   * 7 = cyan / RGB = (0, 255, 255)
   
-* Formes
+* Formes des marqueurs
   * 1 = +
   * 2 = x
   * 3 = □
