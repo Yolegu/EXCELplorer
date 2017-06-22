@@ -57,7 +57,11 @@ Pour utiliser la virgule "," en tant que délimiteur décimal dans Excel mais po
   * 31 = ■
   * 4 = ◇
   * 41 = ◆
-  * 5 = 
+  * 5 = ＊
+  * 6 = ○
+  * 61 = ●
+  * 7 = △
+  * 71 = ▲
 
 # Redimensionnement des graphiques dans Word
 
