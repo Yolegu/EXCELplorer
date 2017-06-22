@@ -33,11 +33,7 @@ A partir de ce moment, la macro génère les graphiques de la manière suivante 
 
 # Choix du séparateur décimal
 
-Dans "Fichier \ Options \ Options avancées \ Options d'édition", décocher "Utiliser les séparateurs système" et spécifier le séparateur décimal désiré.
-
-<p align="center">
- <img src="/img/decimal_format_excel.png?raw=true" alt="Sublime's custom image"/>
-</p>
+Le séparateur décimal des graphiques est celui défini dans les options régionales de l'ordinateur.
 
 # Codes des couleurs et formes
 
