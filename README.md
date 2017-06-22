@@ -39,6 +39,10 @@ Pour utiliser la virgule "," en tant que délimiteur décimal dans Excel mais po
  <img src="/img/decimal_format_excel.png?raw=true" alt="Sublime's custom image"/>
 </p>
 
+# Codes des couleurs et formes
+
+<p>Some Markdown text with <span style="color:blue">some <em>blue</em> text</span>.</p>
+
 # Redimensionnement des graphiques dans Word
 
 # Édition des graphiques dans Word
