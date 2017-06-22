@@ -1,4 +1,6 @@
-# Objectifs d'EXCELplorer
+# Présentation d'EXCELplorer
+
+## Objectifs d'EXCELplorer
 
 La macro EXCELplorer doit, à partir d'un fichier source au format .des, fournir un graphique vectoriel généré grâce à Excel et le copier dans un document Word. Le graphique ainsi généré doit être : 
 * redimensionnable
@@ -6,7 +8,7 @@ La macro EXCELplorer doit, à partir d'un fichier source au format .des, fournir
 * exportable dans un document Powerpoint
 * exportable dans un document PDF sans perte de qualité (le format vectoriel doit être conservé)
 
-# Versions d'Office utilisables
+## Versions d'Office utilisables
 
 La macro EXCELplorer fonctionne sous Office 2013 et 2016. A cause d'importantes modifications du langage VBA entre les versions 2010 et 2013, une version d'EXCELplorer fonctionnant avec des versions antérieures d'Office n'est pas en développement.
 
