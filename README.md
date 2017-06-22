@@ -17,11 +17,17 @@ L'utilisation de la macro nécessite l'installation des logiciels suivants :
 * Excel
 * Powerpoint
 
-# Téléchargement d'EXCELplorer
+## Téléchargement d'EXCELplorer
 
 La code VBA est intégralement disponible dans le document [EXCELplorer.vba](https://github.com/Yolegu/EXCELplorer/blob/master/EXCELplorer.vba) du repository. Pour l'utiliser, il faut coller ce code dans un module VBA. Le document [EXCELplorer.xlsm](https://github.com/Yolegu/EXCELplorer/blob/master/EXCELplorer_v0.2.1.xlsm) contient le code d'EXCELplorer ainsi qu'une interface graphique pour l'exécuter permettant une utilisation simplifiée de la macro.
 
 # Utilisation d'EXCELplorer
+
+## Choix du séparateur décimal
+
+Le séparateur décimal des graphiques est celui défini dans les options régionales de l'ordinateur.
+
+## Ce que fait la macro
 
 Lorsque la macro est exécutée dans EXCEL, une première fenêtre de sélection de fichier s'ouvre. Il s'agit là de sélectionner le fichier Word dans lequel les graphiques vont être crées. Si ce document n'existe pas, il est possible de le créer à cette étape. Si le document existe déjà, il suffit de la sélectionner et d'appuyer sur "Entrée".
 
@@ -33,21 +39,15 @@ A partir de ce moment, la macro génère les graphiques de la manière suivante 
 * chaque graphique Powerpoint créé est ensuite copié dans le document Word spécifié à la première étape de l'exécution de la macro. Le graphique Excel est inséré dans un OLE "Diapositive Microsoft Powerpoint". Le dernier graphique inséré est placé en tête du document.
 * les graphiques générés avec Excel ainsi que les fichiers Powerpoint temporaires sont finalement supprimés. Au final, seul le document Word sélectionné par l'utilisateur à été modifié.
 
-# Choix du séparateur décimal
+# Options esthétiques pour le tracé des graphiques
 
-Le séparateur décimal des graphiques est celui défini dans les options régionales de l'ordinateur.
-
-# Indices et exposants
+## Indices et exposants
 
 Les indices et exposants peuvent être utilisés dans les titres des axes :
 * indice : "texte normal_{mon texte en indice}"
 * exposant : "texte normal^{mon texte en exposant}"
 
-# Codes pour les marqueurs
-
-![alt text](https://github.com/Yolegu/EXCELplorer/blob/master/img/couleurs_marqueurs.png?raw=true)
-   
-# Caractères grecs
+## Caractères grecs
 
 Les caractères grecs peuvent être utilisés dans les titres des axes en spécifiant un ou plusieur des caractères suivants : 
 
@@ -78,6 +78,12 @@ Les caractères grecs peuvent être utilisés dans les titres des axes en spéci
 | Ψ	| \Psi		| ψ	| \psi| 
 | Ω	| \Omega		| ω	| \omega| 
 
-# Redimensionnement des graphiques dans Word
+## Codes pour les marqueurs
 
-# Édition des graphiques dans Word
+![alt text](https://github.com/Yolegu/EXCELplorer/blob/master/img/couleurs_marqueurs.png?raw=true)
+
+# Post-traitement des graphiques à partir de Word
+
+## Redimensionnement des graphiques dans Word
+
+## Édition des graphiques dans Word
