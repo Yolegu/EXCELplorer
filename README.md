@@ -42,9 +42,9 @@ Pour utiliser la virgule "," en tant que délimiteur décimal dans Excel mais po
 # Codes des couleurs et formes
 
 * Couleurs
- * 1 = noir / RGB = (0, 0, 0)
- * 2 = rouge / RGB = (255, 0, 0)
- * 3 = noir / RGB = (0, 0, 0)
+  * 1 = noir / RGB = (0, 0, 0)
+  * 2 = rouge / RGB = (255, 0, 0)
+  * 3 = noir / RGB = (0, 0, 0)
 
 # Redimensionnement des graphiques dans Word
 
