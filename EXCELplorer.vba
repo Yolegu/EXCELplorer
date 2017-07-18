@@ -55,6 +55,10 @@ End If
 Application.ScreenUpdating = False
 
 ' Tous les tracés sont faits dans la feuille "Graphics". Cette feuille est d'abord supprimée si elle existe puis recréée
+
+' pour activer le document EXCELplorer et éviter que le tracé soit fait sur un autre document excel ouvert
+Workbooks("EXCELplorer.xlsm").Activate
+
 Application.DisplayAlerts = False
 For iSheet = 1 To Sheets.Count
     If Sheets(iSheet).Name = "Graphics" Then
@@ -80,6 +84,7 @@ For Each file In txtFileName
 
     ' Création de l'objet qui va contenir les courbes
     ActiveSheet.Shapes.AddChart.Select
+    
     Dim sh As Variant 'mais quel est le type de cette variable ?!
     Set sh = Selection
     
@@ -248,6 +253,11 @@ For Each file In txtFileName
                 
             Else
                 
+                ' On remplace les tabulations par des espaces dans la variable textline car le
+                ' split des données est fait selon le charactère " " (espace)
+                ' Des tabulations sont mises comme séparateur quand des données de plusieurs colonnes sont copiées depuis excel
+                textline = Replace(textline, vbTab, " ")
+                
                 lineArray_temp = Split(textline, " ")
                 
                 j = 0
@@ -270,6 +280,8 @@ For Each file In txtFileName
                     'récupération des valeurs "trimmées"
                     x_temp(i_row) = CDbl(Val(lineArray(0)))
                     y_temp(i_row) = CDbl(Val(lineArray(1)))
+                    
+                    'MsgBox Str(i_row) & " / " & Str(x_temp(i_row)) & " / " & Str(y_temp(i_row))
 
                     i_row = i_row + 1
                     
@@ -278,11 +290,14 @@ For Each file In txtFileName
                     nSeries = nSeries + 1
                     Set s = ActiveChart.SeriesCollection.NewSeries
                     
+                    i_row = i_row - 1
+                    
                     Dim x() As Double
                     Dim y() As Double
-                    ReDim x(i_row - 1) 'x(nLineValue - 3)
-                    ReDim y(i_row - 1) 'y(nLineValue - 3)
-                    For j = 0 To i_row - 1 'nLineValue - 2
+                    ReDim x(i_row) 'x(nLineValue - 3)
+                    ReDim y(i_row) 'y(nLineValue - 3)
+
+                    For j = 0 To i_row 'nLineValue - 2
                         x(j) = x_temp(j)
                         y(j) = y_temp(j)
                     Next
@@ -379,7 +394,6 @@ For Each file In txtFileName
                             s.MarkerStyle = xlMarkerStyleTriangle
                             s.MarkerBackgroundColor = s.MarkerForegroundColor
                         End If
-                        
                         
                         ActiveChart.FullSeriesCollection(nSeries).format.Line.Weight = 0.25
                         
@@ -562,7 +576,6 @@ For Each file In txtFileName
     
     ActiveChart.Axes(xlCategory).MajorUnit = 2 * DX
     ActiveChart.Axes(xlValue).MajorUnit = 2 * DY
-    
     
     ' Création des ticks mineures de l'axe des abscisses
     ActiveChart.Axes(xlCategory).Select
@@ -856,7 +869,7 @@ Set PPT = Nothing
 ActiveSheet.ChartObjects.Delete
 
 Application.DisplayAlerts = True
-Sheets("EXCELplorer").Activate
+Workbooks("EXCELplorer.xlsm").Sheets("EXCELplorer").Activate
 Application.ScreenUpdating = True
 
 ' Suppression la feuille "Graphics"
