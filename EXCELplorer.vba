@@ -305,7 +305,7 @@ For Each file In txtFileName
                     s.XValues = x
                     s.Values = y
                     
-                    If plotStyle = 0 Or plotStyle = 2 Then
+                    If plotStyle = 0 Then
                     
                         s.ChartType = xlXYScatterSmooth
                         
@@ -313,7 +313,7 @@ For Each file In txtFileName
                         s.MarkerStyle = xlMarkerNone
                         s.format.Line.Visible = msoTrue
                         
-                        If plotStyle = 2 Then
+                        If plotSymbol = 1 Then
                             s.format.Line.DashStyle = msoLineDash
                         End If
                         
