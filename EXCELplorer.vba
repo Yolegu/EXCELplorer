@@ -305,13 +305,17 @@ For Each file In txtFileName
                     s.XValues = x
                     s.Values = y
                     
-                    If plotStyle = 0 Then
+                    If plotStyle = 0 Or plotStyle = 2 Then
                     
                         s.ChartType = xlXYScatterSmooth
                         
                         Dim xlMarkerNone As Variant
                         s.MarkerStyle = xlMarkerNone
                         s.format.Line.Visible = msoTrue
+                        
+                        If plotStyle = 2 Then
+                            s.format.Line.DashStyle = msoLineDash
+                        End If
                         
                         If plotColor = 1 Then
                             s.format.Line.ForeColor.RGB = RGB(0, 0, 0)
