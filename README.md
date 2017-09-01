@@ -80,4 +80,4 @@ Les caractères grecs peuvent être utilisés dans les titres des axes en spéci
 
 ## Codes pour les marqueurs
 
-![alt text](https://github.com/Yolegu/EXCELplorer/blob/master/img/couleurs_marqueurs.png?raw=true =100x)
+![alt text](https://github.com/Yolegu/EXCELplorer/blob/master/img/couleurs_marqueurs.png?raw=true | width=50)
